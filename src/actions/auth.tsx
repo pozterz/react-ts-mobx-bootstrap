@@ -1,33 +1,14 @@
-import axios from 'axios'
 import userStore from '../stores/users'
-import auth from '../services/auth'
-import { env } from '../config'
+import fetch from '../services/fetch'
 
 export const login = ({ username, password }, callback = undefined) => {
   
-  const api = axios.create({
-		baseURL: env.getApiurl()
-	})
+	const method = 'POST'
+	const path = 'login'
 
-	api.interceptors.request.use(config => {
-		const token = auth.getToken()
-		if (token) {
-			config.headers['Authorization'] = `Bearer ${token}`
-		}
-		return config
-  })
-
-  userStore.logingin()
-
-  return api
-		.request({
-			method: "POST",
-			data: { username, password },
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		})
+	userStore.logingin()
+	
+  return fetch(method, path, { username, password }, {})
 		// .then(data => {
     //   setTimeout(() => {
     //     userStore.setUser({

@@ -10,6 +10,7 @@
     "mobx": "^5.5.0",
     "mobx-react": "^5.2.8",
     "mobx-react-router": "^4.0.5",
+    "mobx-utils": "^5.1.0",
     "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

@@ -1,13 +1,5 @@
-import * as React from "react";
-import {
-  Card,
-  Button,
-  CardBody,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup
-} from "reactstrap"
+import * as React from 'react'
+import { Card, Button, CardBody, Form, FormGroup, Input, InputGroup } from 'reactstrap'
 import { observer, inject } from 'mobx-react'
 import './Login.css'
 import { login, setUser } from '../../actions/auth'
@@ -16,45 +8,45 @@ import { login, setUser } from '../../actions/auth'
 @observer
 export class Login extends React.Component<any, any> {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     }
   }
 
   handleChange = e => {
     e.preventDefault()
-    if(e) {
-      const { target: { value, name }} = e
+    if (e) {
+      const {
+        target: { value, name }
+      } = e
       this.setState((state, props) => ({
         [name]: value
       }))
     }
   }
 
-
   handleLogin = async e => {
     e.preventDefault()
     const { username, password } = this.state
     const { routing } = this.props
 
-    try{
+    try {
       const result = await login({ username, password })
       setUser({
-        name: "pozterz",
-        token: "xD"
+        name: 'pozterz',
+        token: 'xD'
       })
       console.log('result', result)
-    } catch(err) {
+    } catch (err) {
       console.log('err', err)
       setUser({
-        name: "pozterz",
-        token: "xD"
+        name: 'pozterz',
+        token: 'xD'
       })
       routing.push('home')
     }
-
   }
 
   render() {
@@ -68,8 +60,7 @@ export class Login extends React.Component<any, any> {
           <Card className="text-center w-400" outline color="primary">
             <CardBody className="w-100 p-4">
               <div className="card-block" />
-              { users.isLoggedIn? 't': 'f' }
-              { users.isFetching? 'Loading': '' }
+              {users.isFetching ? 'Loading' : ''}
               <div className="form">
                 <Form>
                   <FormGroup className="my-3">
@@ -97,13 +88,7 @@ export class Login extends React.Component<any, any> {
                     </InputGroup>
                   </FormGroup>
                   <FormGroup className="mt-3 mb-0">
-                    <Button
-                      color="primary"
-                      type="submit"
-                      block
-                      className="py-2"
-                      onClick={this.handleLogin}
-                    >
+                    <Button color="primary" type="submit" block className="py-2" onClick={this.handleLogin}>
                       Login
                     </Button>
                   </FormGroup>
@@ -113,8 +98,8 @@ export class Login extends React.Component<any, any> {
           </Card>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Login;
+export default Login
